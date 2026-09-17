@@ -1,0 +1,21 @@
+<div class="container">
+    <h1 data-cy="main-title">Gestor de Tareas - World Dance</h1>
+
+    <div class="input-box">
+        <input type="text" [(ngModel)]="newTaskTitle" placeholder="Escribe una nueva tarea..." data-cy="task-input" />
+        <button (click)="addTask()" data-cy="add-task-btn">Agregar Tarea</button>
+    </div>
+
+    <ul data-cy="task-list">
+        @for (task of tasks; track task.id) {
+        <li [class.completed]="task.completed" data-cy="task-item">
+            <span (click)="toggleTask(task)" data-cy="task-title">
+                {{ task.title }}
+            </span>
+            <button (click)="deleteTask(task.id)" data-cy="delete-task-btn">Eliminar</button>
+        </li>
+        } @empty {
+        <p data-cy="empty-msg">No hay tareas pendientes.</p>
+        }
+    </ul>
+</div>
